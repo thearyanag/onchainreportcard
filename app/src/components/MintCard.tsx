@@ -2,7 +2,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { LAMPORTS_PER_SOL, TransactionSignature } from '@solana/web3.js';
 import { FC, useCallback } from 'react';
 import { notify } from "../utils/notifications";
-const getOnchainData = require('../functions/getOnchainData');
+import axios from 'axios';
 
 export const MintCard: FC = () => {
     const { publicKey } = useWallet();
@@ -13,11 +13,21 @@ export const MintCard: FC = () => {
             notify({ type: 'error', message: 'Wallet not connected!' });
             return;
         }
+
         notify({ type: 'loading', message: 'Minting your report card' });
 
-        let res = await getOnchainData(publicKey);
-        console.log("res", res);
-       
+        let res = await axios.get('/api/createNFT' , {
+            params : {
+                receiverAddress : publicKey.toString()
+            }
+        });
+
+        notify({ type: 'success', message: 'Report card minted successfully' , txid : `${publicKey.toString()}`});
+
+
+
+        console.log(res.data);
+        
     }, [publicKey]);
 
     return (

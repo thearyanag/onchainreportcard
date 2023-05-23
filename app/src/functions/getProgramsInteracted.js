@@ -1,10 +1,11 @@
 const axios = require('axios')
+const HELIUS_API_KEY = process.env.HELIUS_API_KEY;
 
 const getProgramsInteracted = async (ownerAddress) => {
 
     let signatures = ["1"];
 
-    const url = `https://api.helius.xyz/v0/addresses/${ownerAddress}/transactions?api-key=7af4bda5-23e2-4d78-a78f-49e79cf354ed&before=`
+    const url = `https://api.helius.xyz/v0/addresses/${ownerAddress}/transactions?api-key=${HELIUS_API_KEY}&before=`
     let lastSig = "";
 
     let programs = {};

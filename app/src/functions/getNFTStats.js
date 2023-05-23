@@ -1,6 +1,8 @@
 const axios = require('axios')
 
-const url = "https://api.helius.xyz/v1/nft-events?api-key=7af4bda5-23e2-4d78-a78f-49e79cf354ed"
+const HELIUS_API_KEY = process.env.HELIUS_API_KEY;
+
+const url = `https://api.helius.xyz/v1/nft-events?api-key=${HELIUS_API_KEY}`
 
 const getNFTStats = async (ownerAddress) => {
     const { data } = await axios.post(url, {

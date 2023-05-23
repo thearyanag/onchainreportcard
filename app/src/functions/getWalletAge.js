@@ -1,8 +1,11 @@
 const { Connection, PublicKey } = require("@solana/web3.js");
 
+const HELIUS_API_KEY = process.env.HELIUS_API_KEY;
+
 const connection = new Connection(
-    "https://rpc.helius.xyz?api-key=7af4bda5-23e2-4d78-a78f-49e79cf354ed"
+    `https://rpc.helius.xyz?api-key=${HELIUS_API_KEY}`
 );
+
 async function getWalletAge(address, beforeSig) {
     let signatures = ["1"];
     let counter = 0;

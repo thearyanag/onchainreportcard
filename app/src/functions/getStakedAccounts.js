@@ -1,7 +1,8 @@
 const axios = require('axios')
 
+const HELIUS_API_KEY = process.env.HELIUS_API_KEY;
 const getBalances = async (ownerAddress) => {
-    const uRl = `https://api.helius.xyz/v0/addresses/${ownerAddress}/balances?api-key=7af4bda5-23e2-4d78-a78f-49e79cf354ed`
+    const uRl = `https://api.helius.xyz/v0/addresses/${ownerAddress}/balances?api-key=${HELIUS_API_KEY}`
     const { data } = await axios.get(uRl)
     const tokens = data.tokens
 
