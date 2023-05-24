@@ -29,8 +29,9 @@ async function getWalletAge(address, beforeSig) {
     }
     lastSig.signature;
 
-    const firstTx = await connection.getParsedTransaction(lastSig.signature);
-    const lastTx = await connection.getParsedTransaction(firstSig.signature);
+    const firstTx = await connection.getParsedTransaction(lastSig.signature , { "maxSupportedTransactionVersion": 0});
+    const lastTx = await connection.getParsedTransaction(firstSig.signature , { "maxSupportedTransactionVersion": 0});
+    
     const firstDate = new Date(firstTx.blockTime * 1000);
     const lastDate = new Date(lastTx.blockTime * 1000);
     let age = Date.now() - firstDate.getTime();

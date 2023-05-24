@@ -8,7 +8,7 @@ const getOnchainData = async (address) => {
     const nftStats = await getNFTStats(address);
     const programsInteracted = await getProgramsInteracted(address);
     const stakedAccounts = await getStakedAccounts(address);
-    // const walletAge = await getWalletAge(address);
+    const walletAge = await getWalletAge(address);
 
     let nftScore, programScore, stakedScore, walletAgeScore;
 
@@ -24,12 +24,6 @@ const getOnchainData = async (address) => {
     let uniqueTransactionTypes = Object.keys(programsInteracted.type).length;
 
     let stakedSol = stakedAccounts.stakedSol;
-
-    let walletAge = {
-        age: 0,
-        firstDate: 0,
-        lastDate: 0,
-    }
 
     let walletage = walletAge.age;
     let firstInteraction = walletAge.firstDate;
